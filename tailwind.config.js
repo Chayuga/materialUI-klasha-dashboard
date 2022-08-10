@@ -14,10 +14,10 @@ module.exports = {
         16: '16px',
       },
       backgroundColor: {
-        'main-bg': '#FFFFFF',
-        'main-dark-bg': '#FFFBF7',
+        'main-bg': '#FAFBFB',
+        'main-dark-bg': '#20232A',
         'secondary-dark-bg': '#33373E',
-        'light-gray': '#FFFBF7',
+        'light-gray': '#F7F7F7',
         'half-transparent': 'rgba(0, 0, 0, 0.5)',
       },
       borderWidth: {
@@ -26,12 +26,11 @@ module.exports = {
       borderColor: {
         colors: '#F0F0F0',
       },
-      fontColor : {
-          black: '#222223',
-          darkGrey: '#464646',
-          grey: '#4C4C4C',
-          lightGrey: '#A3A3A3'
-
+      fontColor: {
+        black: '#222223',
+        darkGrey: '#464646',
+        grey: '#4C4C4C',
+        lightGrey: '#A3A3A3',
       },
 
       width: {
