@@ -1,4 +1,5 @@
 import arrowLeft from './arrow-left.png';
+import arrowRight from './arrow-right.png';
 import arrowDown from './arrow-down.png';
 import analytics from './analytics.png';
 import normalPieChart from './normal-pie-chart.png';
@@ -17,6 +18,7 @@ import wallet from './wallet.png';
 
 export {
   arrowLeft,
+  arrowRight,
   arrowDown,
   analytics,
   normalPieChart,

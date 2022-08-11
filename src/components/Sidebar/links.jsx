@@ -16,6 +16,7 @@ export const links = [
     links: [
       {
         name: 'Dashboard',
+        path: 'Dashboard',
         icon: <img src={normalPieChart} alt='pie chart' className='h-5' />,
       },
       {
@@ -24,6 +25,7 @@ export const links = [
       },
       {
         name: 'Transaction',
+        path: 'Transaction',
         icon: <img src={normalPayments} alt='transactions' className='h-5' />,
       },
       {
