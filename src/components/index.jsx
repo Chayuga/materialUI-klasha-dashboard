@@ -1,5 +1,6 @@
 export { default as Header } from './Header';
 export { default as Navbar } from './Navbar';
-export { default as Sibdebar } from './Sibdebar';
-export { default as Footler } from './Footler';
+export { default as Sidebar } from './Sidebar/Sidebar';
+export { default as SidebarIcon } from './SidebarIcon';
+export { default as Footer } from './Footer';
 export { default as AreaChart } from './Charts/AreaChart';
