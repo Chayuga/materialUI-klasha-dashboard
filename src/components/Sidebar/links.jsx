@@ -12,7 +12,8 @@ import {
 
 export const links = [
   {
-    title: 'Main pages',
+    title1: 'Main pages',
+    title2: 'Pages',
     links: [
       {
         name: 'Dashboard',
@@ -44,7 +45,8 @@ export const links = [
   },
 
   {
-    title: 'Accept payments',
+    title1: 'Accept payments',
+    title2: 'Accept',
     links: [
       {
         name: 'KlashaCheckout',
@@ -57,7 +59,8 @@ export const links = [
     ],
   },
   {
-    title: 'Send payment',
+    title1: 'Send payment',
+    title2: 'Send',
     links: [
       {
         name: 'KlashaWire',

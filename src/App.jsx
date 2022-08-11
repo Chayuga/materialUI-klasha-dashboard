@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useStateContext } from './contexts/ContextProvider';
 
 import { Navbar, Sidebar, SidebarIcon, Header, Footer } from './components';
 
@@ -7,7 +8,7 @@ import { Transactions, Dashboard } from './pages';
 import './App.css';
 
 function App() {
-  const activeMenu = true;
+  const { activeMenu } = useStateContext();
 
   return (
     <div>

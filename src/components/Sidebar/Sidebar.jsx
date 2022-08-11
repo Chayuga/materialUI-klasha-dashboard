@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import { useStateContext } from '../../contexts/ContextProvider';
 
 import { links } from '../Sidebar/links';
 import klashaFullLogo from '../../assets/logo/klasha__logo.svg';
@@ -8,7 +9,7 @@ import klashaKLogo from '../../assets/logo/klasha-k.svg';
 import { arrowLeft, arrowRight } from '../../assets/icons';
 
 const Sidebar = () => {
-  const [activeMenu, setActiveMenu] = useState(true);
+  const { activeMenu, setActiveMenu } = useStateContext();
 
   const activeLink =
     'flex items-center gap-5 pl-4 pt-3 pb-2.5 text-[#EF2C5A] text-md';
@@ -33,7 +34,9 @@ const Sidebar = () => {
         <div className='mt-10'>
           {links.map((item) => (
             <div key={item.title}>
-              <p className='text-gray-400 m-3 mt-4 '>{item.title}</p>
+              <p className='text-gray-400 m-3 mt-4 '>
+                {activeMenu ? `${item.title1}` : `${item.title2}`}
+              </p>
               {item.links.map((link) => (
                 <NavLink
                   to={link.path ? `/${link.path}` : '#'}
@@ -54,7 +57,9 @@ const Sidebar = () => {
         {/* lower hide button */}
         <button
           type='button'
-          onClick={(prevMenu) => setActiveMenu((prevMenu) => !prevMenu)}
+          onClick={(prevMenu) =>
+            setActiveMenu((prevActiveMenu) => !prevActiveMenu)
+          }
           className='flex outline rounded-md p-3 hover:bg-light-gray mt-20'
         >
           {activeMenu ? (
