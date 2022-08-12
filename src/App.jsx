@@ -1,57 +1,30 @@
 import React, { useEffect } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useStateContext } from './contexts/ContextProvider';
 
-import { Navbar, Sidebar, SidebarIcon, Header, Footer } from './components';
-
-import { Transactions, Dashboard } from './pages';
+import { Navbar, Sidebar } from './components';
 import './App.css';
+import Routers from './components/Routes';
 
 function App() {
   const { activeMenu } = useStateContext();
 
   return (
-    <div>
-      <BrowserRouter>
-        <div>
-          <div className='flex relative dark:bg-main-dark-bg'>
-            <div
-              className={`${
-                activeMenu ? 'w-72' : 'w-36'
-              } fixed sidebar dark:bg-secondary-dark-bg bg-white`}
-            >
-              <Sidebar />
-            </div>
-          </div>
-          <div
-            className={`dark:bg-main-bg bg-main-bg min-h-screen w-full ${
-              activeMenu ? 'md:ml-72' : 'md:ml-36'
-            }`}
-          >
-            <div className='fixed md:static bg-main-bg dark:bg-main-dark-bg navbar w-full'>
-              <Navbar />
-            </div>
-          </div>
-          <div>
-            <Routes>
-              {/* Main pages */}
-              <Route path='/' element={<Dashboard />} />
-              <Route path='#' element='Balance' />
-              <Route path='/' element={<Transactions />} />
-              <Route path='#' element='Analytics' />
-              <Route path='#' element='Marketing' />
-              <Route path='#' element='Exchange rates' />
-
-              {/* Accept payments */}
-              <Route path='#' element='KlashaCheckout' />
-              <Route path='#' element='Payment Links' />
-
-              {/* Send payments */}
-              <Route path='#' element='KlashaWire' />
-            </Routes>
-          </div>
-        </div>
-      </BrowserRouter>
+    <div className='flex w-full'>
+      <div
+        className={`${
+          activeMenu ? 'w-52' : 'w-24'
+        } fixed sidebar justify-center bg-white`}
+      >
+        <Sidebar />
+      </div>
+      <div
+        className={`divide-y bg-main-bg overflow-none flex-grow md:mx-6 p-4   divide-solid ${
+          activeMenu ? 'md:ml-52' : 'md:ml-24'
+        }`}
+      >
+        <Navbar />
+        <Routers />
+      </div>
     </div>
   );
 }

@@ -14,7 +14,8 @@ module.exports = {
         16: '16px',
       },
       backgroundColor: {
-        'main-bg': '#FAFBFB',
+        'main-bg': '#FFFFFFS',
+        'sidebar-bg': '#FFFBF7',
         'main-dark-bg': '#20232A',
         'secondary-dark-bg': '#33373E',
         'light-gray': '#F7F7F7',

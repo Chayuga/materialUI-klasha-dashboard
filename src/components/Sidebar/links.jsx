@@ -1,14 +1,12 @@
-import {
-  analytics,
-  paymentLink,
-  normalPayments,
-  normalPieChart,
-  radar,
-  shoppingCart,
-  swap,
-  transactions,
-  wallet,
-} from '../../assets/icons';
+import { TiChartPieOutline } from 'react-icons/ti';
+import { BiWallet } from 'react-icons/bi';
+import { RiArrowUpDownFill } from 'react-icons/ri';
+import { AiFillSignal } from 'react-icons/ai';
+import { HiOutlineSpeakerphone } from 'react-icons/hi';
+import { TbExchange } from 'react-icons/tb';
+import { FiShoppingCart } from 'react-icons/fi';
+import { BiLink } from 'react-icons/bi';
+import { BiTransfer } from 'react-icons/bi';
 
 export const links = [
   {
@@ -17,29 +15,35 @@ export const links = [
     links: [
       {
         name: 'Dashboard',
-        path: 'Dashboard',
-        icon: <img src={normalPieChart} alt='pie chart' className='h-5' />,
+        path: 'dashboard',
+        iconActive: <TiChartPieOutline />,
+        iconNormal: <TiChartPieOutline />,
       },
       {
         name: 'Balance',
-        icon: <img src={wallet} alt='wallet' className='h-5' />,
+        iconActive: <BiWallet />,
+        iconNormal: <BiWallet />,
       },
       {
-        name: 'Transaction',
-        path: 'Transaction',
-        icon: <img src={normalPayments} alt='transactions' className='h-5' />,
+        name: 'Transactions',
+        path: 'transactions',
+        iconActive: <RiArrowUpDownFill />,
+        iconNormal: <RiArrowUpDownFill />,
       },
       {
         name: 'Analytics',
-        icon: <img src={analytics} alt='analytics' className='h-5' />,
+        iconActive: <AiFillSignal />,
+        iconNormal: <AiFillSignal />,
       },
       {
         name: 'Marketing',
-        icon: <img src={radar} alt='marketing' className='h-5' />,
+        iconActive: <HiOutlineSpeakerphone />,
+        iconNormal: <HiOutlineSpeakerphone />,
       },
       {
         name: 'Exchange rates',
-        icon: <img src={swap} alt='exchange' className='h-5' />,
+        iconActive: <TbExchange />,
+        iconNormal: <TbExchange />,
       },
     ],
   },
@@ -50,11 +54,13 @@ export const links = [
     links: [
       {
         name: 'KlashaCheckout',
-        icon: <img src={shoppingCart} alt='checkout' className='h-5' />,
+        iconActive: <FiShoppingCart />,
+        iconNormal: <FiShoppingCart />,
       },
       {
         name: 'Payment Links',
-        icon: <img src={paymentLink} alt='payment link' className='h-5' />,
+        iconActive: <BiLink />,
+        iconNormal: <BiLink />,
       },
     ],
   },
@@ -64,7 +70,8 @@ export const links = [
     links: [
       {
         name: 'KlashaWire',
-        icon: <img src={transactions} alt='send payment' className='h-5' />,
+        iconActive: <BiTransfer />,
+        iconNormal: <BiTransfer />,
       },
     ],
   },
