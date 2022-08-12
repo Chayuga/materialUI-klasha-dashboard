@@ -3,30 +3,33 @@ import React, { createContext, useContext, useState } from 'react';
 const StateContext = createContext();
 
 export const ContextProvider = ({ children }) => {
-  const [minimiseMenu, setMinimiseMenu] = useState(false);
-  const [activeMenu, setActiveMenu] = useState(true);
+  const [showMenu, setShowMenu] = useState(true);
+  const [fullMenu, setFullMenu] = useState(true);
   const [toggleOn, setToggleOn] = useState(true);
   const [screenSize, setScreenSize] = useState(undefined);
-  const [mobileMenuOn, setMobileMenuOn] = useState(false);
+  const [mobileMenu, setMobileMenu] = useState(false);
+  const [onMobile, setOnMobile] = useState(true);
 
   const handleMobileMenu = () => {
-    setMobileMenuOn((prevMobileMenuState) => !prevMobileMenuState);
+    setOnMobile(true);
   };
 
   return (
     <StateContext.Provider
       value={{
-        activeMenu,
-        setActiveMenu,
+        showMenu,
+        setShowMenu,
+        fullMenu,
+        setFullMenu,
         toggleOn,
         setToggleOn,
         screenSize,
         setScreenSize,
-        minimiseMenu,
-        setMinimiseMenu,
-        mobileMenuOn,
-        setMobileMenuOn,
+        onMobile,
+        setOnMobile,
         handleMobileMenu,
+        mobileMenu,
+        setMobileMenu,
       }}
     >
       {children}

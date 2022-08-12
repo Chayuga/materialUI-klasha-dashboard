@@ -12,10 +12,12 @@ const Navbar = () => {
   const {
     screenSize,
     setScreenSize,
-    minimiseMenu,
-    setMinimiseMenu,
-    mobileMenuOn,
-    handleMobileMenu,
+    onMobile,
+    setOnMobile,
+    setMobileMenu,
+    onTablet,
+    setOnTablet,
+    setFullMenu,
   } = useStateContext();
 
   useEffect(() => {
@@ -29,18 +31,28 @@ const Navbar = () => {
   }, []);
 
   useEffect(() => {
-    if (screenSize <= 900) {
-      setMinimiseMenu(true);
-    } else {
-      setMinimiseMenu(false);
+    if (screenSize <= 640) {
+      setOnMobile(true);
+    }
+    if (screenSize <= 768) {
+      setFullMenu(false);
+      setOnMobile(false);
+    }
+    if (screenSize <= 1024) {
+      setFullMenu(true);
+      setOnMobile(false);
     }
   }, [screenSize]);
 
   return (
     <div className='flex justify-between py-4 relative'>
-      {minimiseMenu && (
-        <button type='button' onClick={handleMobileMenu} className='mx-3'>
-          {!mobileMenuOn && <AiOutlineMenu />}
+      {onMobile && (
+        <button
+          type='button'
+          onClick={() => setMobileMenu(true)}
+          className='mx-3'
+        >
+          <AiOutlineMenu />
         </button>
       )}
       <div className='flex items-center '>
@@ -51,19 +63,16 @@ const Navbar = () => {
           <div className='mx-6 '>
             <ToggleSwitch />
           </div>
-          {!minimiseMenu && (
-            <>
-              <div>
-                <span>
-                  Welcome back,
-                  <UserDropDown />
-                </span>
-              </div>
-
-              <div className='mx-6 '>
-                <Languge />
-              </div>
-            </>
+          <div>
+            <span>
+              {onMobile ? 'Welcome back' : 'Hi'},
+              <UserDropDown />
+            </span>
+          </div>
+          {onMobile && (
+            <div className='mx-6 '>
+              <Languge />
+            </div>
           )}
         </div>
       </div>

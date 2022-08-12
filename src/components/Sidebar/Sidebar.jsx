@@ -15,31 +15,14 @@ import Languge from '../Navbar/Languge';
 
 const Sidebar = () => {
   const {
-    activeMenu,
-    setActiveMenu,
-    screenSize,
-    setScreenSize,
-    minimiseMenu,
-    setMinimiseMenu,
+    fullMenu,
+    setFullMenu,
+    mobileMenu,
+    onMobile,
+    setMobileMenu,
+    showMenu,
+    setShowMenu,
   } = useStateContext();
-
-  useEffect(() => {
-    const handleResize = () => setScreenSize(window.innerWidth);
-
-    window.addEventListener('resize', handleResize);
-
-    handleResize();
-
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  useEffect(() => {
-    if (screenSize <= 900) {
-      setMinimiseMenu(true);
-    } else {
-      setMinimiseMenu(false);
-    }
-  }, [screenSize]);
 
   const activeLink =
     'flex items-center  pl-4 pt-3 pb-2.5 text-[#EF2C5A] text-md';
@@ -49,16 +32,20 @@ const Sidebar = () => {
 
   return (
     <>
-      {!minimiseMenu && (
+      {showMenu && (
         <div className='h-screen md:overflow-hidden overflow-auto md:hover:overflow-auto bg-sidebar-bg'>
           <div>
             <div className='flex flex-col items-center mt-8'>
-              <MdOutlineCancel />
+              {onMobile && (
+                <button type='button' onClick={() => setMobileMenu(false)}>
+                  <MdOutlineCancel />
+                </button>
+              )}
               <Link
                 to='/'
                 className='flex justify-center item-center gap-3 mt-4 '
               >
-                {activeMenu ? (
+                {fullMenu ? (
                   <img src={klashaFullLogo} alt='klasha logo' />
                 ) : (
                   <img src={klashaKLogo} alt='klasha logo' />
@@ -70,7 +57,7 @@ const Sidebar = () => {
                 {links.map((item) => (
                   <div key={item.title}>
                     <p className='text-gray-400 my-3 mt-4 '>
-                      {activeMenu ? `${item.title1}` : `${item.title2}`}
+                      {fullMenu ? `${item.title1}` : `${item.title2}`}
                     </p>
                     {item.links.map((link) => (
                       <NavLink
@@ -81,7 +68,7 @@ const Sidebar = () => {
                           !link.path && normalLink,
                         ]}
                       >
-                        {activeMenu ? (
+                        {fullMenu ? (
                           <div
                             className={`flex items-center {({ isActive }) => [
                             isActive ? activeLink : normalLink,
@@ -105,26 +92,22 @@ const Sidebar = () => {
                 ))}
               </div>
               {/* lower hide button */}
-              {!minimiseMenu && (
-                <button
-                  type='button'
-                  onClick={() =>
-                    setActiveMenu((prevActiveMenu) => !prevActiveMenu)
-                  }
-                  className='flex items-center justify-center outline rounded-md mx-5 p-3 hover:bg-light-gray mt-20'
-                >
-                  {activeMenu ? (
-                    <>
-                      <AiOutlineLeft />
-                      <span className='ml-2'>Hide panel</span>
-                    </>
-                  ) : (
-                    <>
-                      <AiOutlineRight />
-                    </>
-                  )}
-                </button>
-              )}
+              <button
+                type='button'
+                onClick={() => setFullMenu((prevActiveMenu) => !prevActiveMenu)}
+                className='flex items-center justify-center outline rounded-md mx-5 p-3 hover:bg-light-gray mt-20'
+              >
+                {fullMenu ? (
+                  <>
+                    <AiOutlineLeft />
+                    <span className='ml-2'>Hide panel</span>
+                  </>
+                ) : (
+                  <>
+                    <AiOutlineRight />
+                  </>
+                )}
+              </button>
             </div>
           </div>
         </div>
