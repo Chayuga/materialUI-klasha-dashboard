@@ -2,6 +2,7 @@ import React, { createContext, useContext, useState } from 'react';
 
 const StateContext = createContext();
 
+// eslint-disable-next-line react/prop-types
 export const ContextProvider = ({ children }) => {
   const [showMenu, setShowMenu] = useState(true);
   const [fullMenu, setFullMenu] = useState(true);
@@ -29,9 +30,8 @@ export const ContextProvider = ({ children }) => {
         setOnMobile,
         handleMobileMenu,
         mobileMenu,
-        setMobileMenu,
-      }}
-    >
+        setMobileMenu
+      }}>
       {children}
     </StateContext.Provider>
   );

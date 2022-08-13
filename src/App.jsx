@@ -1,7 +1,7 @@
 import React from 'react';
-import { useStateContext } from './contexts/ContextProvider';
+// import { useStateContext } from './contexts/ContextProvider';
 
-import Routers from './Routes';
+import Routers from './components/Routes';
 import { Box, Typography } from '@mui/material';
 
 const App = () => {
