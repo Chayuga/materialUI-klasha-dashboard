@@ -61,7 +61,7 @@ export const TRANSACTIONS = [
     'Brainlounge',
     'Cornell Croston',
     'ccroston5@t.co',
-    6224,
+    '$6224',
     '6/17/2022',
     'Pending'
   ),
