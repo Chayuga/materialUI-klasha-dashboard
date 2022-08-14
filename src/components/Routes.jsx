@@ -7,7 +7,7 @@ const Routers = () => {
     <div>
       <Routes>
         {/* Main pages */}
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/" element={<Dashboard />} />
         <Route path="/balance" element="Balance" />
         <Route path="/transactions" element={<Transactions />} />
         <Route path="/analytics" element="Analytics" />
