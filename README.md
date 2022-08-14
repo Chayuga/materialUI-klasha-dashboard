@@ -22,3 +22,5 @@ You may also see any lint errors in the console.
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 You can learn the right way to [setup ESLint and Prittier](https://dev.to/knowankit/setup-eslint-and-prettier-in-react-app-357b).
+
+Learn more on Charts [Used Rechart](https://www.tutorialspoint.com/how-to-create-an-area-chart-using-recharts-in-reactjs)

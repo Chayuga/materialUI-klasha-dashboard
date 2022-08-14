@@ -14,12 +14,11 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.0",
-    "@devexpress/dx-react-chart": "3.0.4",
-    "@devexpress/dx-react-chart-material-ui": "3.0.4",
-    "@devexpress/dx-react-core": "3.0.4",
-    "d3-scale": "^3.2.0"
+    "recharts": "^2.1.13",
+    "web-vitals": "^2.1.0"
   },
+  "description": "Example usage of KendoReact\nSee [https://www.telerik.com/kendo-react-ui/components/charts/series-types/area/](https://www.telerik.com/kendo-react-ui/components/charts/series-types/area/)",
+  "tags": "React,KendoReact",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

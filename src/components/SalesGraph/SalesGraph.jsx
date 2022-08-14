@@ -1,37 +1,9 @@
-import React, { useState } from 'react';
 import { ArrowDownward } from '@mui/icons-material';
-import Paper from '@mui/material/Paper';
-import {
-  Chart,
-  ArgumentAxis,
-  ValueAxis,
-  AreaSeries,
-  Legend
-} from '@devexpress/dx-react-chart-material-ui';
-import { ArgumentScale, Animation } from '@devexpress/dx-react-chart';
-import { styled } from '@mui/material/styles';
-import { scalePoint } from 'd3-scale';
-import { data7, data30 } from '../utils';
 import { Box, Button, FormControl, InputLabel, MenuItem, Select, Typography } from '@mui/material';
+import React, { useState } from 'react';
+import { AreaChart, Area, YAxis, XAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 
-const PREFIX = 'klasha';
-
-const classes = {
-  chart: `${PREFIX}-chart`
-};
-
-const StyledChartRoot = styled(Chart.Root)(() => ({
-  [`&.${classes.chart}`]: {
-    paddingRight: '20px'
-  }
-}));
-
-const ChartRoot = (props) => <StyledChartRoot {...props} className={classes.chart} />;
-const LegendRoot = (props) => (
-  <Legend.Root {...props} sx={{ display: 'flex', margin: 'auto', flexDirection: 'row' }} />
-);
-const LegendLabel = (props) => <Legend.Label {...props} sx={{ pt: 1 }} />;
-const LegendItem = (props) => <Legend.Item {...props} sx={{ flexDirection: 'column' }} />;
+import { data7, data30 } from '../utils';
 
 const SalesGraph = () => {
   const textBlack = '#000000';
@@ -59,62 +31,125 @@ const SalesGraph = () => {
   };
 
   return (
-    <Box>
-      <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-        <Box>
-          <Typography variant="h6" sx={{ borderRight: 1 }}>
-            Sales
-          </Typography>
-          <Button onClick={handleSevenDays} size="small" sx={{ color: colorSeven }}>
-            7 days
-          </Button>
-          <Button onClick={handleThirtyDays} size="small" sx={{ color: colorThirty }}>
-            30 days
-          </Button>
-
-          <FormControl sx={{ m: 1, minWidth: 80, border: '1px solid #000000' }}>
-            <InputLabel id="demo-simple-select-autowidth-label">USD</InputLabel>
-            <Select
-              labelId="demo-simple-select-autowidth-label"
-              id="demo-simple-select-autowidth"
-              value={currency}
-              onChange={handleChangeCurrency}
-              autoWidth
-              label="USD">
-              <MenuItem value={'usd'}>USD</MenuItem>
-              <MenuItem value={'ngn'}>NGN</MenuItem>
-              <MenuItem value={'kes'}>KES</MenuItem>
-            </Select>
-          </FormControl>
-        </Box>
+    <Box sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'flex-end', marginX: '1rem' }}>
+      <Box>
         <Box
           sx={{
             display: 'flex',
-            alignItems: 'center',
-            border: '1px solid #000000',
-            padding: '1.2rem'
+            justifyContent: 'space-between',
+            marginX: '1rem',
+            alignItems: 'center'
           }}>
-          <ArrowDownward /> <Typography>Download report</Typography>
+          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+            <Typography variant="body1" sx={{ marginRight: '1.5rem' }}>
+              Sales
+            </Typography>
+            <Typography sx={{ borderRight: 1, marginRight: '1.5rem' }}>.</Typography>
+            <Button
+              onClick={handleSevenDays}
+              size="small"
+              sx={{ color: colorSeven, textTransform: 'none' }}>
+              7 days
+            </Button>
+            <Button
+              onClick={handleThirtyDays}
+              size="small"
+              sx={{ color: colorThirty, textTransform: 'none' }}>
+              30 days
+            </Button>
+
+            <FormControl sx={{ m: 1, minWidth: 120 }}>
+              <InputLabel id="demo-simple-select-autowidth-label">currency</InputLabel>
+              <Select
+                labelId="demo-simple-select-autowidth-label"
+                id="demo-simple-select-autowidth"
+                value={currency}
+                onChange={handleChangeCurrency}
+                autoWidth
+                label="currency">
+                <MenuItem value={'usd'}>USD</MenuItem>
+                <MenuItem value={'ngn'}>NGN</MenuItem>
+                <MenuItem value={'kes'}>KES</MenuItem>
+              </Select>
+            </FormControl>
+          </Box>
+          <Button
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              border: '1px solid #000000',
+              paddingX: '0.6rem',
+              maxHeight: '2.7rem',
+              color: '#000000',
+              textTransform: 'none'
+            }}>
+            <ArrowDownward /> <Typography>Download report</Typography>
+          </Button>
+        </Box>
+        <Box
+          sx={{
+            border: '1px solid #000000',
+            borderRadius: '10px',
+            padding: '1.5rem',
+            margin: '1rem'
+          }}>
+          <AreaChart
+            width={768}
+            height={284}
+            data={chartData}
+            margin={{ top: 10, right: 30, left: 5, bottom: 0 }}>
+            <defs>
+              <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="5%" stopColor="#EF2C5A" stopOpacity={0.8} />
+                <stop offset="95%" stopColor="#EF2C5A" stopOpacity={0} />
+              </linearGradient>
+            </defs>
+            <XAxis dataKey="range" />
+            <YAxis />
+            <CartesianGrid strokeDasharray="3 3" />
+            <Tooltip />
+            <Legend />
+            <Area
+              type="monotone"
+              dataKey="revenue"
+              stroke="#8884d8"
+              fillOpacity={1}
+              fill="url(#colorUv)"
+            />
+          </AreaChart>
         </Box>
       </Box>
-      <Paper>
-        <Chart data={chartData} rootComponent={ChartRoot}>
-          <ArgumentScale factory={scalePoint} />
-          <ArgumentAxis />
-          <ValueAxis />
-
-          <AreaSeries name="" valueField="revenue" argumentField="range" />
-          <Animation />
-          <Legend
-            position="bottom"
-            rootComponent={LegendRoot}
-            itemComponent={LegendItem}
-            labelComponent={LegendLabel}
-          />
-        </Chart>
-      </Paper>
+      <Box
+        sx={{
+          dispaly: 'flex',
+          flexDirection: 'column',
+          borderRadius: '10px',
+          alignItems: 'center',
+          paddingY: '3rem',
+          paddingX: '2rem',
+          marginBottom: '1rem',
+          width: '19rem',
+          height: '15rem',
+          backgroundColor: '#EF2C5A'
+        }}>
+        <Typography sx={{ color: '#ffffff' }}>
+          KlashaWire - send <br />
+          money to businesses <br /> globally from Africa
+        </Typography>
+        <Button
+          sx={{
+            textTransform: 'none',
+            padding: '0.7rem 1rem',
+            backgroundColor: '#000000',
+            borderRadius: '10px',
+            color: '#ffffff',
+            bottom: '-8rem',
+            '&:hover': { backgroundColor: '#ffffff', color: '#000000' }
+          }}>
+          Send a Wire
+        </Button>
+      </Box>
     </Box>
   );
 };
-
 export default SalesGraph;
