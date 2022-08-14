@@ -1,10 +1,10 @@
+import { Typography } from '@mui/material';
 import React from 'react';
-import { DisplayTable } from '../components';
 
 const Transactions = () => {
   return (
     <div>
-      <DisplayTable />
+      <Typography>Transactions table</Typography>
     </div>
   );
 };
