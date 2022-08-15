@@ -1,75 +1,56 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { AiOutlineMenu } from 'react-icons/ai';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 import { useStateContext } from '../../contexts/ContextProvider';
+import klashaFullLogo from '../../assets/logo/klasha__logo.svg';
 
 import DateToday from './date';
 import Languge from './Languge';
 import ToggleSwitch from './ToggleSwitch';
 import UserDropDown from './UserDropDown';
+import { Box, Link } from '@mui/material';
 
 const Navbar = () => {
-  const {
-    screenSize,
-    setScreenSize,
-    onMobile,
-    setOnMobile,
-    setMobileMenu,
-    onTablet,
-    setOnTablet,
-    setFullMenu,
-  } = useStateContext();
+  const mobile = useMediaQuery('(max-width:640px)');
 
-  useEffect(() => {
-    const handleResize = () => setScreenSize(window.innerWidth);
-
-    window.addEventListener('resize', handleResize);
-
-    handleResize();
-
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  useEffect(() => {
-    if (screenSize <= 640) {
-      setOnMobile(true);
-    }
-    if (screenSize <= 768) {
-      setFullMenu(false);
-      setOnMobile(false);
-    }
-    if (screenSize <= 1024) {
-      setFullMenu(true);
-      setOnMobile(false);
-    }
-  }, [screenSize]);
+  const { setMobileMenu } = useStateContext();
 
   return (
     <div className='flex justify-between py-4 relative'>
-      {onMobile && (
+      <Box sx={{ display: 'flex' }}>
         <button
           type='button'
           onClick={() => setMobileMenu(true)}
-          className='mx-3'
+          className='mx-3 mr-4'
         >
           <AiOutlineMenu />
         </button>
+
+        {mobile && (
+          <Link to='/' className='flex justify-center item-center mt-4 '>
+            <img src={klashaFullLogo} alt='klasha logo' />
+          </Link>
+        )}
+      </Box>
+
+      {!mobile && (
+        <div className='flex items-center '>
+          Today: <DateToday />
+        </div>
       )}
-      <div className='flex items-center '>
-        Today: <DateToday />
-      </div>
       <div className='flex justify-between py-4'>
         <div className='flex justify-end items-center flex-grow '>
-          <div className='mx-6 '>
-            <ToggleSwitch />
-          </div>
+          {!mobile && (
+            <div className='mx-6 '>
+              <ToggleSwitch />
+            </div>
+          )}
           <div>
-            <span>
-              {onMobile ? 'Welcome back' : 'Hi'},
-              <UserDropDown />
-            </span>
+            <span>Welcome back,</span>
+            <UserDropDown />
           </div>
-          {onMobile && (
+          {!mobile && (
             <div className='mx-6 '>
               <Languge />
             </div>
