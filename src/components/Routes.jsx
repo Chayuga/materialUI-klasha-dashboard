@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { Dashboard, Transactions } from '../pages';
 
 const Routers = () => {
@@ -7,6 +7,7 @@ const Routers = () => {
     <div>
       <Routes>
         {/* Main pages */}
+        <Route exact path='/' element={<Navigate to='/dashboard' />} />
         <Route path='/dashboard' element={<Dashboard />} />
         <Route path='/balance' element='Balance' />
         <Route path='/transactions' element={<Transactions />} />

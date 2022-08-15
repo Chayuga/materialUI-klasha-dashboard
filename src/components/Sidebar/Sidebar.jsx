@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai';
 
@@ -10,19 +10,12 @@ import { links } from '../Sidebar/links';
 import klashaFullLogo from '../../assets/logo/klasha__logo.svg';
 import klashaKLogo from '../../assets/logo/klasha-k.svg';
 
-import UserDropDown from '../Navbar/UserDropDown';
-import Languge from '../Navbar/Languge';
+// import UserDropDown from '../Navbar/UserDropDown';
+// import Languge from '../Navbar/Languge';
 
 const Sidebar = () => {
-  const {
-    fullMenu,
-    setFullMenu,
-    mobileMenu,
-    onMobile,
-    setMobileMenu,
-    showMenu,
-    setShowMenu,
-  } = useStateContext();
+  const { fullMenu, setFullMenu, onMobile, setMobileMenu, showMenu } =
+    useStateContext();
 
   const activeLink =
     'flex items-center  pl-4 pt-3 pb-2.5 text-[#EF2C5A] text-md';
