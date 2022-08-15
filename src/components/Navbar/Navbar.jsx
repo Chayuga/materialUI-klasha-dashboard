@@ -13,26 +13,27 @@ import { Box, Link } from '@mui/material';
 
 const Navbar = () => {
   const mobile = useMediaQuery('(max-width:640px)');
+  const tablet = useMediaQuery('(max-width:720px)');
 
   const { setMobileMenu } = useStateContext();
 
   return (
     <div className='flex justify-between py-4 relative'>
-      <Box sx={{ display: 'flex' }}>
-        <button
-          type='button'
-          onClick={() => setMobileMenu(true)}
-          className='mx-3 mr-4'
-        >
-          <AiOutlineMenu />
-        </button>
+      {mobile && (
+        <Box sx={{ display: 'flex' }}>
+          <button
+            type='button'
+            onClick={() => setMobileMenu(true)}
+            className='mx-3 mr-4'
+          >
+            <AiOutlineMenu />
+          </button>
 
-        {mobile && (
           <Link to='/' className='flex justify-center item-center mt-4 '>
             <img src={klashaFullLogo} alt='klasha logo' />
           </Link>
-        )}
-      </Box>
+        </Box>
+      )}
 
       {!mobile && (
         <div className='flex items-center '>
@@ -41,7 +42,7 @@ const Navbar = () => {
       )}
       <div className='flex justify-between py-4'>
         <div className='flex justify-end items-center flex-grow '>
-          {!mobile && (
+          {!mobile && !tablet && (
             <div className='mx-6 '>
               <ToggleSwitch />
             </div>
